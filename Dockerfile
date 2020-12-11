@@ -13,7 +13,7 @@ COPY cfg/default.conf /etc/nginx/conf.d/default.conf
 
 RUN if [ -n "$CDN_ACCESS_KEY" ]; then \
     sed -i s/##PLACEHOLDER-cdn_header_detection-DO_NOT_CHANGE##/"map \$http_cdn_access \$reroute_to_cdn { default '1'; $CDN_ACCESS_KEY '0'; }"/g /etc/nginx/conf.d/default.conf && \
-    sed -i s/##PLACEHOLDER-cdn_reroute-DO_NOT_CHANGE##/"if (\$reroute_to_cdn) { return 301 \$scheme:\/\/code.jquery.com\$uri\/; }"/g /etc/nginx/conf.d/default.conf; \
+    sed -i s/##PLACEHOLDER-cdn_reroute-DO_NOT_CHANGE##/"if (\$reroute_to_cdn) { return 301 \$scheme:\/\/code.jquery.com\$uri; }"/g /etc/nginx/conf.d/default.conf; \
   fi
 
 #COPY cdn/* /usr/share/nginx/html/
