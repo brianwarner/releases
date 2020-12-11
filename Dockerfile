@@ -16,7 +16,7 @@ RUN if [ -n "$CDN_ACCESS_KEY" ]; then \
     sed -i s/##PLACEHOLDER-cdn_reroute-DO_NOT_CHANGE##/"if (\$reroute_to_cdn) { return 301 \$scheme:\/\/code.jquery.com\$uri; }"/g /etc/nginx/conf.d/default.conf; \
   fi
 
-#COPY cdn/* /usr/share/nginx/html/
+COPY cdn/* /usr/share/nginx/html/
 
 EXPOSE 80
 
