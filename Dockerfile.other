@@ -1,0 +1,17 @@
+FROM nginx:alpine
+
+RUN apk add vim
+COPY cfg/vimrc /etc/vim/vimrc
+COPY cfg/default.conf /etc/nginx/conf.d/default.conf
+
+COPY cdn/* /usr/share/nginx/html
+
+RUN apk --update add readline readline-dev libxml2 libxml2-dev libxslt  \
+      libxslt-dev python3 zlib zlib-dev ruby ruby-dev yaml \
+      yaml-dev libffi libffi-dev build-base nodejs ruby-io-console \
+      ruby-irb ruby-json ruby-rake ruby-rdoc git
+RUN gem install --no-document jekyll
+
+
+EXPOSE 80
+
